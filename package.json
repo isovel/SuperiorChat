@@ -1,0 +1,31 @@
+{
+  "name": "superiorchat",
+  "version": "0.0.1",
+  "description": "A web-based Minecraft server chat client",
+  "devDependencies": {
+    "express": "^4.14.0",
+    "minecraft-protocol": "^1.1.0",
+    "body-parser": "^1.15.2",
+    "prismarine-tokens": "^1.0.3",
+    "jade": "^1.11.0",
+    "socket.io": "^1.6.0"
+  },
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/toastythetoaster/SuperiorChat.git"
+  },
+  "keywords": [
+    "minecraft",
+    "chat",
+    "toastythetoaster",
+    "superiorchat"  ],
+  "author": "toastythetoaster",
+  "bugs": {
+    "url": "https://github.com/toastythetoaster/superiorchat/issues"
+  },
+  "homepage": "https://github.com/toastythetoaster/superiorchat#readme"
+}
