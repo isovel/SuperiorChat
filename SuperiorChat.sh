@@ -1,3 +1,7 @@
+echo Initilizing NodeJS...
+echo
 npm start
-echo The script has terminated.
+echo
+echo The application has terminated.
+echo
 pause

@@ -3,6 +3,6 @@ echo Initilizing NodeJS...
 echo/
 npm start
 echo/
-echo SuperiorChat has stopped running
+echo The application has terminated.
 echo/
 pause
