@@ -3,7 +3,7 @@ A web-based Minecraft server chat interface.
 
 ## Installation Instructions:
 1.  Download and install NodeJS from [here](https://nodejs.org/en/download/ "NodeJS Download Page").
-2.  Download SuperiorChat from [here](https://github.com/toastythetoaster/SuperiorChat/archive/master.zip "SuperiorChat Download")
+2.  Download SuperiorChat from [here](https://github.com/toastythetoaster/SuperiorChat/archive/master.zip "SuperiorChat Download").
 3.  Extract the zip file
 4.  Inside the superiorchat-master folder, run InstallDependencies.bat (Windows) or InstallDependencies.sh (Windows/macOSX/Linux w/ Git Bash)
 
