@@ -52,7 +52,7 @@ app.get("/", function(req, res) {
   	res.render("login");
 });
 app.post("/", function(req, res) {
-	var verifiedVersions = ["1.7.10","1.8.8","1.9","1.9.2","1.9.4","1.10.2","1.12.2","1.13.2"];
+	var verifiedVersions = ["1.7.10","1.8.8","1.9","1.9.2","1.9.4","1.10.2","1.12.2"];
 	var data = [{
     	email: req.body.email,
     	pass: req.body.pass,
@@ -62,8 +62,8 @@ app.post("/", function(req, res) {
   	if (verifiedVersions.indexOf(req.body.version) >= 0) {
   		data[0].version = req.body.version;
 	} else {
-		data.version = "1.10.2";
-	    console.log("Illegal version found. Defaulting to 1.10.2");
+		data.version = "1.12.2";
+	    console.log("Illegal version found. Defaulting to 1.12.2");
 	}
   	res.render("chat", {data: data});
 });
@@ -178,8 +178,11 @@ function parseChat(chatObj, parentState) {
     	var myColor = "";
     	if(parentState.color) myColor = formatList[parentState.color];
 	    if(parentState.bold) myColor = "§l"+myColor;
-	    if(parentState.underlined) myColor = "§m"+myColor;
+      if(parentState.italic) myColor = "§o"+myColor;
+	    if(parentState.underlined) myColor = "§n"+myColor;
+      if(parentState.strikethrough) myColor = "§m"+myColor;
 	    if(parentState.obfuscated) myColor = "§k"+myColor;
+      if(parentState.reset) myColor = "§r"+myColor;
 	    //if(myColor.length > 0) myColor = myColor.slice(0, -1);
 	    return myColor;
   	}
@@ -194,6 +197,7 @@ function parseChat(chatObj, parentState) {
 	    if("underlined" in chatObj) parentState.underlined = chatObj["underlined"];
 	    if("strikethrough" in chatObj) parentState.strikethrough = chatObj["strikethrough"];
 	    if("obfuscated" in chatObj) parentState.obfuscated = chatObj["obfuscated"];
+      if("reset" in chatObj) parentState.reset = chatObj["reset"];
 
 	    if("text" in chatObj) {
 	      	chat += getColorize(parentState)+chatObj.text;
