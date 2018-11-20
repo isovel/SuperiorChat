@@ -173,10 +173,10 @@ io.on("connection", function (socket) {
 
 
 
-function parseChat(chatObj, parentState) { // Ripped from a NMP example script and edited to work for this client. Works well, but has some bugs.
+function parseChat(chatObj, parentState) {
   	function getColorize(parentState) {
     	var myColor = "";
-    	if("color" in parentState) myColor = formatList[parentState.color];
+    	if(parentState.color) myColor = formatList[parentState.color];
 	    if(parentState.bold) myColor = "§l"+myColor;
 	    if(parentState.underlined) myColor = "§m"+myColor;
 	    if(parentState.obfuscated) myColor = "§k"+myColor;
