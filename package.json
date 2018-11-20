@@ -1,6 +1,6 @@
 {
-  "name": "superiorchat",
-  "version": "1.0.0",
+  "name": "SuperiorChat",
+  "version": "0.0.1",
   "description": "A web-based Minecraft server chat client.",
   "devDependencies": {
     "express": "^4.14.0",
@@ -22,7 +22,7 @@
     "minecraft",
     "chat",
     "toastythetoaster",
-    "superiorchat",
+    "superiorchat"
   ],
   "author": "toastythetoaster",
   "bugs": {
