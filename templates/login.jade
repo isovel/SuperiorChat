@@ -45,12 +45,12 @@ html
           .cell
             .input-control.text.full-size(data-role='input')
               label(for='email') Email/Username:
-              input#user_email(name='email', type='text', placeholder='Enter your email address or username (for offline)', autocomplete="off", required)
+              input#user_email(name='email', type='text', placeholder='Enter your email address (or unmigrated username)', autocomplete="off", required)
         .row.cells1
           .cell
             .input-control.password.full-size(data-role='input')
               label(for='pass') Password:
-              input#user_pass(name='pass', type='password', placeholder='Enter your password (blank for offline server)', autocomplete="off")
+              input#user_pass(name='pass', type='password', placeholder='Enter your password', autocomplete="off", required)
         .row.cells1
           .cell
             .input-control.server.full-size(data-role='input')
@@ -65,9 +65,9 @@ html
             .input-control.version.full-size(data-role='input')
               label(for='version') Server Version:
               select#server_port(name='version')
+                option 1.13.2
+                option 1.12.2
                 option 1.10.2
-                option 1.10.1
-                option 1.10
                 option 1.9.4
                 option 1.9.2
                 option 1.9

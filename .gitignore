@@ -10,6 +10,9 @@ yarn-error.log*
 # Package Lock
 package-lock.json
 
+# NodeJS
+NodeJS/
+
 # Runtime data
 pids
 *.pid

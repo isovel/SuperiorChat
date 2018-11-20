@@ -1,4 +1,4 @@
-const express    = require("express");
+﻿const express    = require("express");
 const app        = express();
 const port       = 8080;
 const util       = require("util");
@@ -52,7 +52,7 @@ app.get("/", function(req, res) {
   	res.render("login");
 });
 app.post("/", function(req, res) {
-	var verifiedVersions = ["1.7.10","1.8.8","1.9","1.9.2","1.9.4","1.10","1.10.1","1.10.2"];
+	var verifiedVersions = ["1.7.10","1.8.8","1.9","1.9.2","1.9.4","1.10.2","1.12.2","1.13.2"];
 	var data = [{
     	email: req.body.email,
     	pass: req.body.pass,
@@ -85,7 +85,7 @@ io.on("connection", function (socket) {
         	socket.mcclient.end("Socket Closed");
         	delete socket.mcclient;
       	}
-    	console.log("Got disconnect!");
+    	console.log("Got disconnected!");
   	});
 	socket.on("logoutUser", function (data) {
     	socket.disconnect();
@@ -100,8 +100,8 @@ io.on("connection", function (socket) {
 	    if (data.data.serverVersion) {
 	    	mcparams.version = data.data.serverVersion;
 	    } else {
-	    	console.log("No version posted. Defaulting to 1.10.2.");
-	    	mcparams.version = "1.10.2";
+	    	console.log("No version provided. Defaulting to 1.12.2.");
+	    	mcparams.version = "1.12.2";
 	    }
 
 	    if (data.data.password) mcparams.password = data.data.password;
@@ -114,12 +114,12 @@ io.on("connection", function (socket) {
 	      	socket.mcclient = mcproto.createClient(opts);
 	      	socket.mcclient.on("success", function(player, status) {
 		        console.log("Socket user: "+socketID+" Logged in");
-		        io.to(socketID).emit("message", {message:"§8[§2§lSuperior§a§lChat§8] §aLogged in§r",clientID:socketID});
+		        io.to(socketID).emit("message", {message:"§8[§2§lSuperior§a§lChat§r§8] §eLogged in§r",clientID:socketID});
 		    });
 		    socket.mcclient.on("login", function(player, status) {
 		        console.log("Socket user: "+socketID+" Joined server");
-				io.to(socketID).emit("message", {message:"§8[§2§lSuperior§a§lChat§8] §eJoined server§r",clientID:socketID});
-				io.to(socketID).emit("message", { message: "§8[§2§lSuperior§a§lChat§8] §eInteracting with the server via §2Superior§aChat§e!§r",clientID:socketID});
+				io.to(socketID).emit("message", {message:"§8[§2§lSuperior§a§lChat§r§8] §eJoined server§r",clientID:socketID});
+				io.to(socketID).emit("message", {message:"§8[§2§lSuperior§a§lChat§r§8] §aCommunicating with the server via SuperiorChat§r",clientID:socketID});
 				socket.mcclient.write("settings", {
 				    locale: "en_US",
 				    skinParts: 127
@@ -157,7 +157,7 @@ io.on("connection", function (socket) {
       		socket.mcclient.on("end", function(packet) {
         		console.log(packet);
 				console.log("Client left");
-				io.to(socketID).emit("message", {message:"§4Client left§r",clientID:socketID});
+				io.to(socketID).emit("message", {message:"§8[§2§lSuperior§a§lChat§8] §4Client left or disconnected§r",clientID:socketID});
 		        if (socket.mcclient) {
 		          	socket.mcclient.end("Socket Closed");
 		          	delete socket.mcclient;
