@@ -91,7 +91,7 @@ io.on("connection", function (socket) {
     	socket.disconnect();
   	});
 	socket.on("loginUser", function(data) {
-		io.to(socketID).emit("message", {message:"§8[§2§lSuperior§a§lChat§8] §aAttempting to log you in...§r §8(§7§lSocket ID: "+socketID+"§8)§r",clientID:socketID});
+		io.to(socketID).emit("message", {message:"§8[§2§lSuperior§a§lChat§r§8] §eAttempting to log you in...§r §8(§7§lSocket ID: "+socketID+"§8)§r",clientID:socketID});
 	    var mcparams = {
 	    	host: data.data.serverIP,
 	      	port: data.data.serverPort,
@@ -119,7 +119,13 @@ io.on("connection", function (socket) {
 		    socket.mcclient.on("login", function(player, status) {
 		        console.log("Socket user: "+socketID+" Joined server");
 				io.to(socketID).emit("message", {message:"§8[§2§lSuperior§a§lChat§r§8] §eJoined server§r",clientID:socketID});
-				io.to(socketID).emit("message", {message:"§8[§2§lSuperior§a§lChat§r§8] §aCommunicating with the server via SuperiorChat§r",clientID:socketID});
+        io.to(socketID).emit("message", {message:"",clientID:socketID});
+        io.to(socketID).emit("message", {message:"§8§m------------------------§r§8[§7§lClient Settings§r§8]§8§m------------------------§r",clientID:socketID});
+        io.to(socketID).emit("message", {message:"§8§l[ §7▪ §8] §7Username§8: §6"+mcparams.username+" §8[ §7▪ §8]§r",clientID:socketID});
+        io.to(socketID).emit("message", {message:"§8§l[ §7▪ §8] §7Server IP§8: §6"+mcparams.host+" §8[ §7▪ §8]§r",clientID:socketID});
+        io.to(socketID).emit("message", {message:"§8§l[ §7▪ §8] §7MC Version§8: §6"+mcparams.version+" §8[ §7▪ §8]§r",clientID:socketID});
+        io.to(socketID).emit("message", {message:"§8§m-----------------------------------------------------------------§r",clientID:socketID});
+        io.to(socketID).emit("message", {message:"",clientID:socketID});
 				socket.mcclient.write("settings", {
 				    locale: "en_US",
 				    skinParts: 127
@@ -134,7 +140,7 @@ io.on("connection", function (socket) {
       		socket.mcclient.on("kick_disconnect", function(packet) {
         		console.log(packet);
         		console.log("Client left");
-        		io.to(socketID).emit("message", {message:"§8[§2§lSuperior§a§lChat§8] §4Client left or disconnected§r",clientID:socketID});
+        		io.to(socketID).emit("message", {message:"§8[§2§lSuperior§a§lChat§r§8] §4Client left or disconnected§r",clientID:socketID});
         		if (socket.mcclient) {
           			socket.mcclient.end("Socket Closed");
           			delete socket.mcclient;
@@ -157,7 +163,7 @@ io.on("connection", function (socket) {
       		socket.mcclient.on("end", function(packet) {
         		console.log(packet);
 				console.log("Client left");
-				io.to(socketID).emit("message", {message:"§8[§2§lSuperior§a§lChat§8] §4Client left or disconnected§r",clientID:socketID});
+				io.to(socketID).emit("message", {message:"§8[§2§lSuperior§a§lChat§r§8] §4Client left or disconnected§r",clientID:socketID});
 		        if (socket.mcclient) {
 		          	socket.mcclient.end("Socket Closed");
 		          	delete socket.mcclient;
@@ -190,7 +196,7 @@ function parseChat(chatObj, parentState) {
   	if(typeof chatObj === "string") {
     	return getColorize(chatObj);
   	} else {
-	    var chat = "";
+	    var chat = "§r";
 	    if("color" in chatObj) parentState.color = chatObj["color"];
 	    if("bold" in chatObj) parentState.bold = chatObj["bold"];
 	    if("italic" in chatObj) parentState.italic = chatObj["italic"];
@@ -200,18 +206,18 @@ function parseChat(chatObj, parentState) {
       if("reset" in chatObj) parentState.reset = chatObj["reset"];
 
 	    if("text" in chatObj) {
-	      	chat += getColorize(parentState)+chatObj.text;
+	      	chat += "§r"+getColorize(parentState)+chatObj.text+"§r";
 	    } else if("translate" in chatObj && dictionary.hasOwnProperty(chatObj.translate)) {
 	      	var args = [dictionary[chatObj.translate]];
 	      	chatObj["with"].forEach(function(s) {
 	        	args.push(parseChat(s, parentState));
 	      	});
 
-	      	chat += util.format.apply(this, args);
+	      	chat += "§r"+util.format.apply(this, args)+"§r";
 	    }
 	    if (chatObj.extra) {
 	      	chatObj.extra.forEach(function(item) {
-	        	chat += parseChat(item, parentState);
+	        	chat += "§r"+parseChat(item, parentState)+"§r";
 	      	});
 	    }
 	    return chat;
