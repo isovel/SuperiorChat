@@ -1,6 +1,10 @@
 # SuperiorChat
 A web-based Minecraft server chat interface.
 
+## NOTICE!!!
+As of November 24, 2018 all work on this repo has been diverted towards a private repo and this web-based client has been abandoned. That's not to say that it doesn't work, it's just that development for it has stopped.
+Work on this repo may or may not continue at a later date.
+
 ## Installation Instructions:
 1.  Download and install NodeJS from [here](https://nodejs.org/en/download/ "Download NodeJS")
 2.  Download and install Git from [here](https://git-scm.com/downloads "Download Git")
