@@ -13,5 +13,5 @@ Work on this repo may or may not continue at a later date.
 5.  Inside the superiorchat-master folder, run InstallDependencies.bat (Windows) or InstallDependencies.sh (Windows/macOSX/Linux w/ Git Bash)
 
 ## Running SuperiorChat:
-1.  When that finishes, run the SuperiorChat.bat (Windows) or SuperiorChat.sh (Windows/macOSX/Linux w/ Git Bash) to start the web-server
-2.  Open a browser while SuperiorChat is running and type `localhost:8080` in the address bar
+1.  Run SuperiorChat.bat (Windows) or SuperiorChat.sh (Windows/macOSX/Linux w/ Git Bash) to start the web-server
+2.  Connect to [`localhost:8080`](localhost:8080)
